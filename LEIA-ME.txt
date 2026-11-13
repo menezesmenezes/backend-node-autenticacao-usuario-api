@@ -1,0 +1,26 @@
+COMO USAR (Node.js + PostgreSQL)
+
+Precisa ter o Node.js instalado (versao 18 ou maior): https://nodejs.org
+
+1) Extraia o zip e abra a pasta no terminal (ou no VS Code / IntelliJ).
+
+2) Instale as dependencias:
+     npm install
+
+3) Copie o arquivo .env.example para .env  (Windows: copy .env.example .env)
+   Abra o .env e coloque a sua senha do PostgreSQL em DB_PASSWORD
+   e troque o JWT_SECRET por uma frase sua (32 caracteres ou mais).
+
+4) Rode:
+     npm start
+
+Banco: PostgreSQL ligado, banco "amigo_da_vizinhanca", tabela "usuarios"
+(colunas: id, nome, email, senha, tipo).
+
+Testar no Postman:
+  POST http://localhost:8080/usuarios
+       {"nome":"Teste","email":"teste@email.com","senha":"123456"}
+  POST http://localhost:8080/auth/login
+       {"email":"teste@email.com","senha":"123456"}   -> devolve o token
+  GET  http://localhost:8080/usuarios/me
+       Cabecalho: Authorization: Bearer SEU_TOKEN
